@@ -1,0 +1,26 @@
+GBD_name,acronym,air_pollution,physical_activity,noise,nitrogen_dioxide,ap_acronym,pa_acronym,pa_new_name
+All causes,all-cause-mortality,0,1,0,0,,all_cause,all-cause-mortality
+Ischemic heart disease,coronary-heart-disease,1,1,1,1,cvd_ihd,coronary_heart_disease,coronary-heart-disease
+Neoplasms,all-cause-cancer,0,1,0,0,,total_cancer,all-cause-cancer
+"Tracheal, bronchus, and lung cancer",lung-cancer,1,1,0,0,neo_lung,lung_cancer,lung-cancer
+Stroke,stroke,1,1,0,0,cvd_stroke,stroke,stroke
+Diabetes mellitus type 2,diabetes,0,1,0,0,,diabetes,diabetes
+Lower respiratory infections,,1,0,0,0,lri, ,
+Breast cancer,breast-cancer,0,1,0,0,,breast_cancer,breast-cancer
+Colon and rectum cancer,colon-cancer,0,1,0,0,,colon_cancer,colon-cancer
+Uterine cancer,endometrial-cancer,0,1,0,0,,endometrial_cancer,endometrial-cancer
+Nasopharynx cancer,head-and-neck-cancer,0,1,0,0,,,
+Other pharynx cancer,head-and-neck-cancer,0,1,0,0,,,
+Depressive disorders,depression,0,1,0,0,,,
+Kidney cancer,kidney-cancer,0,1,0,0,,,
+Bladder cancer,bladder-cancer,0,1,0,0,,,
+Multiple myeloma,myeloma,0,1,0,0,,,
+Chronic myeloid leukemia,myeloid-leukemia,0,1,0,0,,,
+Esophageal cancer,esophageal-cancer,0,1,0,0,,,
+Stomach cancer,gastric-cardia-cancer,0,1,0,0,,,
+Liver cancer,liver-cancer,0,1,0,0,,,
+Larynx cancer,head-and-neck-cancer,0,1,0,0,,,
+Prostate cancer,prostate-cancer,0,1,0,0,,,
+Lip and oral cavity cancer,head-and-neck-cancer,0,1,0,0,,,
+Alzheimers disease and other dementias,alzheimer's-disease,0,1,0,0,,,
+Parkinsons disease,parkinson's-disease,0,1,0,0,,,
