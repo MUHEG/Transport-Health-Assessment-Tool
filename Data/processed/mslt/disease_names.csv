@@ -1,0 +1,24 @@
+"GBD_name","acronym","disease","sname","is_not_dis","males","females"
+"All causes","all-cause-mortality","all causes","allc",2,1,1
+"Ischemic heart disease","coronary-heart-disease","ischemic heart disease","ishd",0,1,1
+"Neoplasms","all-cause-cancer","neoplasms","npls",2,1,1
+"Tracheal, bronchus, and lung cancer","lung-cancer","tracheal, bronchus, and lung cancer","tbalc",0,1,1
+"Stroke","stroke","stroke","strk",0,1,1
+"Diabetes mellitus type 2","diabetes","diabetes mellitus type 2","dmt2",0,1,1
+"Lower respiratory infections","","lower respiratory infections","lwri",1,1,1
+"Breast cancer","breast-cancer","breast cancer","brsc",0,0,1
+"Colon and rectum cancer","colon-cancer","colon and rectum cancer","carc",0,1,1
+"Uterine cancer","endometrial-cancer","uterine cancer","utrc",0,0,1
+"Depressive disorders","depression","depressive disorders","dprd",0,1,1
+"Kidney cancer","kidney-cancer","kidney cancer","kdnc",1,1,1
+"Bladder cancer","bladder-cancer","bladder cancer","bldc",1,1,1
+"Multiple myeloma","myeloma","multiple myeloma","mltm",0,1,1
+"Chronic myeloid leukemia","myeloid-leukemia","chronic myeloid leukemia","chml",0,1,1
+"Esophageal cancer","esophageal-cancer","esophageal cancer","espc",1,1,1
+"Stomach cancer","gastric-cardia-cancer","stomach cancer","stmc",0,1,1
+"Liver cancer","liver-cancer","liver cancer","lvrc",0,1,1
+"Prostate cancer","prostate-cancer","prostate cancer","prsc",1,1,0
+"Alzheimers disease and other dementias","alzheimer's-disease","alzheimers disease and other dementias","adaod",0,1,1
+"Parkinsons disease","parkinson's-disease","parkinsons disease","prkd",1,1,1
+"head and neck cancer","head-and-neck-cancer","head and neck cancer","hanc",0,1,1
+"rectum cancer","rectum-cancer","rectum cancer","rctc",1,1,1

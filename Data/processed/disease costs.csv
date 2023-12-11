@@ -1,0 +1,27 @@
+"sname","sex","disease","cost"
+"adaod","female","Dementia",1174.0525539
+"adaod","male","Dementia",1614.2085345
+"brsc","female","Breast cancer",60630.330331
+"carc","female","Bowel cancer",44732.887097
+"carc","male","Bowel cancer",47249.898322
+"chml","female","Chronic myeloid leukaemia (CML)",236322.63906
+"chml","male","Chronic myeloid leukaemia (CML)",233169.7852
+"dmt2","female","Type 2 diabetes",1373.1451686
+"dmt2","male","Type 2 diabetes",1558.5153665
+"dprd","female","Depressive disorders",2729.0915569
+"dprd","male","Depressive disorders",2135.3830927
+"ishd","female","Coronary heart disease",2845.9457516
+"ishd","male","Coronary heart disease",3803.7122506
+"lvrc","female","Liver cancer",20812.864248
+"lvrc","male","Liver cancer",28483.187153
+"mltm","female","Myeloma",105915.31617
+"mltm","male","Myeloma",107828.60945
+"stmc","female","Stomach cancer",36349.401514
+"stmc","male","Stomach cancer",34678.633083
+"strk","female","Stroke",3088.815186
+"strk","male","Stroke",2712.8873617
+"tbalc","female","Lung cancer",28503.381863
+"tbalc","male","Lung cancer",29094.716988
+"utrc","female","Uterine cancer",24670.987271
+"hanc","female","Head and neck cancers",38304.7748454671
+"hanc","male","Head and neck cancers",25161.1135646792
