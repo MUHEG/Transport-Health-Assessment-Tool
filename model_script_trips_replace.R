@@ -70,23 +70,6 @@ scenarios_ShortTrips <- crossing(data.frame(max_walk=maxDistanceWalk),
   mutate(trips_location=paste0(scenarioTripsLocation,"/",scenario,".csv")) %>%
   mutate(output_location=paste0(outputLocation,"/",scenario))
 
-# # ---- Generate persons_matched --- BZ-D: Just run once, already saved in scenarios
-# source("Scripts/functions_tripsReplace.R")
-# source("Scripts/data_prep/synthetic_pop.R")
-# 
-# for (i in 1:nrow(scenarios_ShortTrips)){
-#   generateMatchedPopulationScenario(
-#     output_location=paste0("./scenarios/", city, "-scenarios"),
-#     scenario_name=scenarios_ShortTrips[i,]$scenario,
-#     in_data=paste0("./Data/processed/trips_", city, ".csv"),
-#     travel_data_location=paste0("./Data/processed/travel_data_", city, ".csv"),
-#     max_walk=scenarios_ShortTrips[i,]$max_walk,
-#     max_cycle=scenarios_ShortTrips[i,]$max_cycle,
-#     purpose=scenarios_ShortTrips[i,]$purpose_full
-#   )
-#   cat(paste0("\n scenario ",i,"/",nrow(scenarios_ShortTrips)," complete at ",Sys.time(),"\n"))
-# }
-
 
 # ---- Functions to run model ----
 source("Scripts/data_prep/mmet_pp.R")
