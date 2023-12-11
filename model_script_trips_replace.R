@@ -181,7 +181,6 @@ parameters  <-   GetParameters(
   DIABETES_IHD_RR_M= c(2.16, 1.82, 2.56),
   DIABETES_STROKE_RR_M= c(1.83, 1.60, 2.08))
 
-# load("parameters.RData")
 
 ### VSLY and health cost parameters
 # Office of Best Practice Regulation value of statistical life year in 2022 $
