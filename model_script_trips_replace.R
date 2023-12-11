@@ -48,7 +48,7 @@ dir.create(combineLocationOutputAgg, recursive=TRUE, showWarnings=FALSE)
 # ---- Get scenarios names and data -----
 
 maxDistanceWalk <- c(0,1,2)
-maxDistanceCycle <- c(0,2,5,10)  # SP query: I've added '10', as former outputs did include 10
+maxDistanceCycle <- c(0,2,5,10)
 
 tripPurpose <- c("commuting", "all")
 
