@@ -17,7 +17,6 @@ library(drpa)
 
 
 # ---- Create directories -----
-# City  - select one
 # city <- "melbourne"
 city <- "brisbane"
 
@@ -157,8 +156,8 @@ mortality_trends <- bind_rows(
 
 # --- Parameters ----
 
-NSAMPLES <- 1000
-UNCERTAINTY <- T
+NSAMPLES <- 1
+UNCERTAINTY <- F
 
 ### MSLT & PIFs options
 
@@ -262,7 +261,7 @@ for (i in 1:nrow(scenarios_ShortTrips)){
   cat(paste0("\n combined scenario ",i,"/",nrow(scenarios_ShortTrips)," complete at ",Sys.time(),"\n"))
 }
 
-# Over life course
+# Over life course 
 for (i in 1:nrow(scenarios_ShortTrips)){
   combineOutputs(paste0(scenarios_ShortTrips[i,]$output_location,'/output_df_agg/'), 
                  paste0(combineLocationOutputAgg,"/",scenarios_ShortTrips[i,]$scenario, ".rds"))

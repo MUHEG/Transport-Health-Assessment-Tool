@@ -16,7 +16,7 @@ library(drpa)
 ## Brisbane output from this function differs from Melbourne output as follows.
 ## - The Brisbane input has age in 5 year bands, whereas the Melbourne input has
 ##     age in individual years.  For Melbourne, pifs are calculated as the mean
-##     for each year of age.  Whereas for Brisbane, pifs are initially calcuatled
+##     for each year of age.  Whereas for Brisbane, pifs are initially calculated
 ##     as the mean for each 5 year band, and then the pifs for the band are 
 ##     imputed to each year within that band (so the pifs for each year within a
 ##     5 year band are the same as each other).
@@ -40,18 +40,12 @@ health_burden_2 <- function(ind_ap_pa_location,demographic_location,combined_AP_
     ind_ap_pa <- ind_ap_pa_location 
   }
   DISEASE_INVENTORY <- DISEASE_INVENTORY
-  # DEMOGRAPHIC <- read.csv(demographic_location,as.is=T,fileEncoding="UTF-8-BOM")
-  
-  ### DEMOGRAPHICS need to match mmets_pp/ind_ap_pa population
-  
-  # DEMOGRAPHIC <- filter(DEMOGRAPHIC, X %in% c(ind_ap_pa$dem_index) & sex %in% c(ind_ap_pa$sex))
   
   # filtering down to columns with 'mmet' in their name
   SCEN_SHORT_NAME <- colnames(ind_ap_pa)[grep("mmet",colnames(ind_ap_pa))]
   # removing '_mmet' to find the base scenario and scenario names
   SCEN_SHORT_NAME <- gsub("_mmet","",SCEN_SHORT_NAME)
   
-  # pop_details <- DEMOGRAPHIC
   
   # select appropriate age field ('age' for Melbourne; 'age_band' for Brisbane)
   if ("age" %in% colnames(ind_ap_pa)) {
@@ -134,7 +128,7 @@ health_burden_2 <- function(ind_ap_pa_location,demographic_location,combined_AP_
             pif <-  pif_wt  %>%
               group_by(sex, across(any_of(age_field))) %>%
               dplyr::summarise_at(vars(starts_with("pif"),"age_group_2"), survey_mean)}
-          
+           
           
         }
       }
@@ -567,7 +561,7 @@ CalculationModel <- function(output_location="modelOutput",
   }
   
   
-  # Generate relative risks per person (need to use abbraviated names for RRs)
+  # Generate relative risks per person (need to use abbreviated names for RRs)
   # Check that sometimes it throws an error if function not ran prior to running code in model_script...
   
   for (s in SCEN_SHORT_NAME) {
@@ -582,7 +576,7 @@ CalculationModel <- function(output_location="modelOutput",
         drpa::dose_response(cause = DISEASE_SHORT_NAMES$acronym[i],
         outcome_type = "fatal-and-non-fatal", #"ifelse(DISEASE_SHORT_NAMES$acronym[i] == diabetes", "fatal",'fatal-and-non-fatal')
         dose = mmets_pp[,paste0(s, "_mmet")],quantile = get(paste("QUANTILE"), envir = .GlobalEnv) ,
-         confidence_intervals = F,use_75_pert = T)
+         confidence_intervals = F)
     }
   }
   mmets_pp
@@ -600,6 +594,17 @@ CalculationModel <- function(output_location="modelOutput",
   ) %>%
     dplyr::filter(age > 16) %>%
     replace(is.na(.), 0)
+  
+  if(city=="melbourne") {
+  pif <- pif %>% 
+    group_by(sex) %>%
+    do(data.frame(age=seq(1:100))) %>%
+    ungroup() %>%
+    left_join(pif) %>% 
+    dplyr::filter(age > 16) %>%
+    replace(is.na(.), 0) 
+   
+    }
   
   # Calculate PMSLT
 
@@ -648,19 +653,6 @@ CalculationModel <- function(output_location="modelOutput",
   
   ### Change order in disease short_names to start with diabetes. This is important when calculating the scenario disease life tables as diabetes is calculated first to then 
   ### impact on cardiovascular disease calculations. 
-  
-  
-  ### In the disease trends "Year" means simulation year, not age. 
-  
-  # incidence_trends <- bind_rows(
-  #   read.csv("Data/processed/mslt/incidence_trends_m.csv",as.is=T,fileEncoding="UTF-8-BOM"),
-  #   read.csv("Data/processed/mslt/incidence_trends_f.csv",as.is=T,fileEncoding="UTF-8-BOM")
-  # )
-  # 
-  # mortality_trends <- bind_rows(
-  #   read.csv("Data/processed/mslt/mortality_trends_m.csv",as.is=T,fileEncoding="UTF-8-BOM"),
-  #   read.csv("Data/processed/mslt/mortality_trends_f.csv",as.is=T,fileEncoding="UTF-8-BOM")
-  # )
   
   
   disease_cohorts <- DISEASE_SHORT_NAMES %>%
@@ -754,9 +746,7 @@ CalculationModel <- function(output_location="modelOutput",
         filter(sex == age_sex_disease_cohorts$sex[i] &
                  disease == age_sex_disease_cohorts$sname[i]) %>%
         pull(relative_risk)
-      # (store old pif)
-      # old_pif <- pif_disease[[target_disease]]
-      # diabetes pif = - { scenario prevalence - baseline prevalence } * (RR - 1)  / { baseline prevalence * (RR - 1) + 1 }
+    
       scenario_prevalence <- disease_life_table_list_sc[[dia_col]]$px
       baseline_prevalence <- disease_life_table_list_bl[[dia_col]]$px
       pif_dia <- -(scenario_prevalence - baseline_prevalence)*(relative_risk-1)/
@@ -764,6 +754,8 @@ CalculationModel <- function(output_location="modelOutput",
       # modify pif for target disease: new pif =  (1 - old pif) * (1 - diabetes pif)
       pif_disease[[target_disease]] <- 1- (1-pif_disease[[target_disease]]) * (1-pif_dia)
       # print(sum(old_pif-pif_disease[[target_disease]]))
+      
+      
     }
 
 

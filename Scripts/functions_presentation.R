@@ -1,10 +1,10 @@
 ######################################### FUNCTIONS TO PRESENT MODEL OUTPUTS ############################################
 
 library(ggplot2)
-library(dplyr) # for manipulating data
-library(tidyr) # for pivoting data
-library(scales) # for reordering factor for graphs
-library(zoo) # for calculating rolling mean
+library(dplyr) 
+library(tidyr) 
+library(scales) 
+library(zoo) 
 library(ggpubr)
 library(forcats)
 
@@ -43,7 +43,7 @@ GraphsMode <- function(age_val,sex_val,purpose_val) {
 
 
   dataFiltered <- output_transport_modes %>% 
-    # dplyr::filter(age==age_val,sex==sex_val, purpose==purpose_val) %>%
+    dplyr::filter(age==age_val,sex==sex_val, purpose==purpose_val) %>%
     mutate(scenario=factor(scenario, levels=c("bl","sc"), labels=c("Base case", "Scenario")))%>%
     mutate(mode=factor(mode,
                        levels=c("walking","bicycle","public.transport","car","other"),
@@ -63,7 +63,7 @@ GraphsMode <- function(age_val,sex_val,purpose_val) {
     labs(x="Proportion of all trips") +
     geom_text(aes(label=paste0(round(prop*100,1),"%")),
               position=position_dodge(width=0.9),
-              hjust=-0.05, vjust=0.5, size=4) +
+              hjust=-0.05, vjust=0.5, size=3) +
     scale_x_continuous(labels = scales::percent_format(accuracy = 5L),limits=c(0,.8)) +
     theme_classic() +
     facet_wrap(~ scen_order , nrow = 5, ncol = 2, labeller= labeller(scen_order= scen.lab)) + 
@@ -159,8 +159,6 @@ diseasesChangeIncidenceTable <- function(age_val,sex_val,purp_val) {
 # ---- Disease change incidence graph -----
 diseasesChangeIncidencePerc <- function(age_val,sex_val,purpose_val) {
   # age_val='all'; sex_val='all'; purpose_val='all'
-
-  #### ADD decimals
   
   tmpPlot <- output_diseases_change %>%
     filter(age==age_val,sex==sex_val) %>%
