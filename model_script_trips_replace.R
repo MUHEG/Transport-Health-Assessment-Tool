@@ -14,6 +14,7 @@ library(ParallelLogger)
 library(caret)
 library(devtools)
 library(drpa)
+# library(magrittr)
 
 
 # ---- Create directories -----
@@ -26,7 +27,8 @@ scenarioTripsLocation <- paste0(scenarioLocation, "/scenarioTrips")
 finalLocation     <- paste0("output/", city, "-outputs")
 
 # Local path to result folder
-local_dir_path <- "C:/home/"
+source("Private/Paths.R")
+# local_dir_path <- "C:/home/"
 
 # Local drive-results (large files)
 
@@ -134,7 +136,7 @@ include <- read.csv(disease_inventory_location,as.is=T,fileEncoding="UTF-8-BOM")
 ### DRFs for fatal and non-fatal
 DISEASE_SHORT_NAMES <<- DISEASE_SHORT_NAMES %>%
   dplyr::filter(acronym %in% include$acronym) %>%
-  dplyr::filter(!acronym %in% c("bladder-cancer", "esophageal-cancer", "kidney-cancer",
+  dplyr::filter(!acronym %in% c("bladder-cancer", "esophageal-cancer", "kidney-cancer", "diabetes",
                                 "prostate-cancer", "rectum-cancer", "parkinson's-disease"))
 
 DISEASE_INVENTORY <- read.csv(disease_inventory_location,as.is=T,fileEncoding="UTF-8-BOM") %>%
@@ -157,13 +159,13 @@ mortality_trends <- bind_rows(
 # --- Parameters ----
 
 # To produce deterministic results, set NSAMPLES <- 1 and UNCERTAINTY <- F
-NSAMPLES <- 1000
+NSAMPLES <- 10# 00
 UNCERTAINTY <- T
 
 ### MSLT & PIFs options
 
-#### 1) Include pifs for all-cause mortality impacting on all casue mortality instead of individual diseases
-# accumulated change in mortatlies
+#### 1) Include pifs for all-cause mortality impacting on all cause mortality instead of individual diseases
+# accumulated change in mortalities
 all_cause <- FALSE ## Choose true for all-cause-mortality pifs modifying all cause mortality instead of the 
 ## summation of changes from individual diseases
 #### 2) Use all_cancer pif for individual cancers instead of individual diseases pifs, use disease specific mortality changes
