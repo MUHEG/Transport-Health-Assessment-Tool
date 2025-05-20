@@ -136,7 +136,8 @@ include <- read.csv(disease_inventory_location,as.is=T,fileEncoding="UTF-8-BOM")
 ### DRFs for fatal and non-fatal
 DISEASE_SHORT_NAMES <<- DISEASE_SHORT_NAMES %>%
   dplyr::filter(acronym %in% include$acronym) %>%
-  dplyr::filter(!acronym %in% c("bladder-cancer", "esophageal-cancer", "kidney-cancer", "diabetes",
+  dplyr::filter(!acronym %in% c("bladder-cancer", "esophageal-cancer", "kidney-cancer", 
+                                # "diabetes",
                                 "prostate-cancer", "rectum-cancer", "parkinson's-disease"))
 
 DISEASE_INVENTORY <- read.csv(disease_inventory_location,as.is=T,fileEncoding="UTF-8-BOM") %>%
@@ -159,7 +160,7 @@ mortality_trends <- bind_rows(
 # --- Parameters ----
 
 # To produce deterministic results, set NSAMPLES <- 1 and UNCERTAINTY <- F
-NSAMPLES <- 10# 00
+NSAMPLES <- 1# 000
 UNCERTAINTY <- T
 
 ### MSLT & PIFs options
@@ -218,7 +219,7 @@ cat(paste0("About to start processing results in parallel, using ",number_cores,
 seeds <-1:NSAMPLES
 registerDoParallel(cl)
 start_time = Sys.time()
-
+# QUANTILE <- parameters$QUANTILE
 results <-  foreach::foreach(seed_current=seeds,.export=ls(globalenv())) %:%
   
   foreach::foreach(i=1:nrow(scenarios_ShortTrips), # Try 10 scenarios at the time
